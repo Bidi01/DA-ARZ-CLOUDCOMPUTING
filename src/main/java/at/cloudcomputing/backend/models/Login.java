@@ -26,7 +26,4 @@ public class Login {
     @Column(name = "logintries")
     int logincount;
 
-
-
-
 }

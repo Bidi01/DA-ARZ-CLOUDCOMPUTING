@@ -32,5 +32,4 @@ public class Users {
     @Column(name = "u_admin")
     int admin;
 
-
 }
