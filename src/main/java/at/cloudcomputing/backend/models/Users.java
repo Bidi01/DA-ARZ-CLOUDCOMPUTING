@@ -13,9 +13,10 @@ import javax.persistence.*;
 @Getter
 public class Users {
 
-    @Embedded
-    Login login = new Login();
 
+  /*  @Embedded
+    Login login = new Login();
+*/
     @Id
     @Column(name = "iduser")
     int id;
