@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "user", schema = "ccomputing")
 @Setter
@@ -14,9 +15,6 @@ import javax.persistence.*;
 public class Users {
 
 
-  /*  @Embedded
-    Login login = new Login();
-*/
     @Id
     @Column(name = "iduser")
     int id;
@@ -32,5 +30,4 @@ public class Users {
 
     @Column(name = "u_admin")
     int admin;
-
 }

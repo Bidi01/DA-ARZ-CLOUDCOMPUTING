@@ -3,12 +3,15 @@ package at.cloudcomputing.backend.models;
 import jdk.jfr.StackTrace;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-@Embeddable
 @Table(name = "login", schema = "ccomputing")
 @Entity
 public class Login {
+
+
 
     @Id
     @Column(name = "idlogin")
