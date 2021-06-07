@@ -1,8 +1,10 @@
 package at.cloudcomputing.backend.config;
 
-
+import at.cloudcomputing.backend.service.UserPrincipalDetailsService;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,20 +14,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class AuthorizationConfig extends WebSecurityConfigurerAdapter {
+    private UserPrincipalDetailsService userPrincipalDetailsService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles("ADMIN")
-                .and()
-                .withUser("user")
-                .password(passwordEncoder().encode("user"))
-                .roles("USER").authorities("ACCESS_USUAL");
-
+        auth.authenticationProvider(authenticationProviders());
 
     }
 
@@ -38,6 +33,15 @@ public class AuthorizationConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
                 .httpBasic();
+    }
+
+
+    @Bean
+    DaoAuthenticationProvider authenticationProviders(){
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setUserDetailsService(this.userPrincipalDetailsService);
+        return  daoAuthenticationProvider;
     }
 
     @Bean

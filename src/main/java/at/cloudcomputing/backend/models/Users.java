@@ -4,8 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 
 @Entity
@@ -16,6 +20,7 @@ public class Users {
 
 
     @Id
+    @GeneratedValue
     @Column(name = "iduser")
     int id;
 
@@ -30,4 +35,19 @@ public class Users {
 
     @Column(name = "u_admin")
     int admin;
+
+    @Column(name = "u_username")
+    String userName;
+
+    @Column(name = "u_password")
+    String password;
+
+    @Column(name = "u_active")
+    int isactive;
+
+    @Column(name = "u_rolls")
+    String userRolls;
+
+    @Column(name = "u_permissions")
+    String userPermissions;
 }
