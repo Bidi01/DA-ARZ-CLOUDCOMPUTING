@@ -18,10 +18,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class AuthorizationConfig extends WebSecurityConfigurerAdapter {
     private UserPrincipalDetailsService userPrincipalDetailsService;
 
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProviders());
-
+        auth.authenticationProvider(authenticationProvider());
     }
 
     @Override
@@ -29,7 +29,7 @@ public class AuthorizationConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("index.html").permitAll()
-                .antMatchers("/api/**").hasRole("ADMIN")
+                .antMatchers("/api/**").hasRole("USER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
                 .httpBasic();
@@ -37,7 +37,7 @@ public class AuthorizationConfig extends WebSecurityConfigurerAdapter {
 
 
     @Bean
-    DaoAuthenticationProvider authenticationProviders(){
+    DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         daoAuthenticationProvider.setUserDetailsService(this.userPrincipalDetailsService);

@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Ssd {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idssd")
     int idssd;
 

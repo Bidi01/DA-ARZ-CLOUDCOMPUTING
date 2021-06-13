@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Cpu {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcpu")
     int idcpu;
 

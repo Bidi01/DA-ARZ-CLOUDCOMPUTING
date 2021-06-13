@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Ram{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idram")
     int idram;
 

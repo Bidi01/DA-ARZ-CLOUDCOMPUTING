@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Hdd {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idhdd")
     int idhdd;
 
