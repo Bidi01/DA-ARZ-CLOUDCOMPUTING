@@ -29,10 +29,11 @@ public class AuthorizationConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("index.html").permitAll()
-                .antMatchers("/api/**").hasRole("USER")
+//                .antMatchers("/api/**").hasRole("USER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
-                .httpBasic();
+                .formLogin()
+                .loginPage("/login").permitAll();
     }
 
 

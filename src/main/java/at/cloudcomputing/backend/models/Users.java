@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 @Table(name = "user", schema = "ccomputing")
 @Setter
 public class Users {
+
 
     public Users(String email, String firstName, String lastName, int admin, String userName, String password, int isactive, String userRolls, String userPermissions) {
         this.email = email;
