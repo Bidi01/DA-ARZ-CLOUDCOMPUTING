@@ -1,7 +1,7 @@
 package at.cloudcomputing.backend.controller;
 
 
-import at.cloudcomputing.backend.models.Users;
+import at.cloudcomputing.backend.models.User;
 import at.cloudcomputing.backend.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,24 +20,24 @@ public class UserController {
 
 
     @GetMapping
-    public List<Users> getUsers(){
+    public List<User> getUsers(){
         return userRepository.findAll();
     }
 
     @GetMapping(value = "/id")
-    public Optional<Users> getUserById(@RequestParam(required = true, name = "id")Integer id){
+    public Optional<User> getUserById(@RequestParam(required = true, name = "id")Integer id){
         return userRepository.findById(id);
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public void addUser(@RequestBody Users user){
+    public void addUser(@RequestBody User user){
         userRepository.save(user);
     }
 
 
     @PutMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Object> updateUser(@RequestParam(required = true, name = "id")Integer id, @RequestBody Users user){
-        Optional<Users> userOptional = userRepository.findById(id);
+    public ResponseEntity<Object> updateUser(@RequestParam(required = true, name = "id")Integer id, @RequestBody User user){
+        Optional<User> userOptional = userRepository.findById(id);
         if(!userOptional.isPresent()){
             return ResponseEntity.notFound().build();
         }

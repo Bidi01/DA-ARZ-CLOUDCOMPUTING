@@ -1,7 +1,7 @@
 package at.cloudcomputing.backend.service;
 
 import at.cloudcomputing.backend.models.UserPrincipalDetails;
-import at.cloudcomputing.backend.models.Users;
+import at.cloudcomputing.backend.models.User;
 import at.cloudcomputing.backend.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +19,7 @@ public class UserPrincipalDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Users user =  this.userRepository.findByUserName(s);
+        User user =  this.userRepository.findByUserName(s);
         UserPrincipalDetails userPrincipal = new UserPrincipalDetails(user);
         return userPrincipal;
     }

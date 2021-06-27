@@ -1,44 +1,32 @@
 package at.cloudcomputing.backend.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
+import at.cloudcomputing.backend.config.validation.PasswordMatches;
+import at.cloudcomputing.backend.config.validation.ValidEmail;
 import lombok.Setter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.data.jdbc.core.JdbcAggregateOperations;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
+@PasswordMatches
 @Entity
 @Table(name = "user", schema = "ccomputing")
 @Setter
-public class Users {
+public class User {
 
 
-    public Users(String email, String firstName, String lastName, int admin, String userName, String password, int isactive, String userRolls, String userPermissions) {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.admin = admin;
-        this.userName = userName;
-        this.password = password;
-        this.isactive = isactive;
-        this.userRolls = userRolls;
-        this.userPermissions = userPermissions;
-    }
-
-    protected Users() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "iduser")
     int id;
 
+    @ValidEmail
     @Column(name = "u_email")
     String email;
 
@@ -56,6 +44,7 @@ public class Users {
 
     @Column(name = "u_password")
     String password;
+
 
     @Column(name = "u_active")
     int isactive;
@@ -86,12 +75,12 @@ public class Users {
         return admin;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public String getPassword() {
         return password;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public int getIsactive() {

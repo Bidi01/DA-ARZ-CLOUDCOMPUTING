@@ -10,7 +10,7 @@
                 <i class="fa fa-user"></i> Please Login
             </div>
             <div class="card-block" style="padding: 24px;">
-                <form name="f" th:action="@{/signin}" method="post">
+                <form name="f" th:action="@{/register}" th:object="${userDTO}" method="post">
                     <fieldset>
                         <!-- Thymeleaf + Spring Security error display -->
                         <div th:if="${param.error}" class="alert alert-danger">
@@ -23,24 +23,34 @@
 
                         <!-- Login Controls -->
                         <div class="form-group">
-                            <label for="FirstName">FirstName</label>
-                            <input type="text" class="form-control" id="firstname" name="firstname"
-                                   placeholder="Username">
+                            <label for="FirstName">Vorname</label>
+                            <input th:field="*{firstName}" class="form-control"
+                                   placeholder="Vorname">
                         </div>
                         <div class="form-group">
-                            <label for="LastName">LastName</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname"
-                                   placeholder="Username">
+                            <label for="LastName">Nachame</label>
+                            <input th:field="*{lastName}" class="form-control"
+                                   placeholder="Nachname" />
                         </div>
                         <div class="form-group">
                             <label for="Email">Email</label>
-                            <input type="text" class="form-control" id="email" name="email"
+                            <input th:field="*{email}" class="form-control"
+                                   placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPassword">Username</label>
+                            <input th:field="*{userName}" class="form-control"
                                    placeholder="Username">
                         </div>
                         <div class="form-group">
                             <label for="txtPassword">Password</label>
-                            <input type="password" class="form-control" id="txtPassword" name="txtPassword"
+                            <input type="password" th:field="*{password}" class="form-control"
                                    placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPassword">Confirm Password</label>
+                            <input type="password" th:field="*{confirmPassword}" class="form-control"
+                                   placeholder="Confirm Password">
                         </div>
 
 

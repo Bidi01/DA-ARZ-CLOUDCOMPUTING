@@ -1,11 +1,9 @@
 package at.cloudcomputing.backend.models;
 
 import at.cloudcomputing.backend.repositories.UserRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,11 +11,11 @@ import java.util.List;
 
 
 public class UserPrincipalDetails implements UserDetails {
-    private Users user;
+    private User user;
     private UserRepository userRepository;
 
 
-    public UserPrincipalDetails(Users user) {
+    public UserPrincipalDetails(User user) {
         this.user = user;
 
     }
@@ -38,8 +36,7 @@ public class UserPrincipalDetails implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
-        return  user.getPassword();
+    public String getPassword() { return  user.getPassword();
     }
 
     @Override
