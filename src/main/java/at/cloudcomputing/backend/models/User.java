@@ -1,23 +1,33 @@
 package at.cloudcomputing.backend.models;
 
-import at.cloudcomputing.backend.config.validation.PasswordMatches;
-import at.cloudcomputing.backend.config.validation.ValidEmail;
+
 import lombok.Setter;
-import org.springframework.data.jdbc.core.JdbcAggregateOperations;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.*;
 
 
-@PasswordMatches
 @Entity
 @Table(name = "user", schema = "ccomputing")
 @Setter
 public class User {
+
+    public User() {
+    }
+
+    public User(String email, String firstName, String lastName, String userName, String password) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.admin = 0;
+        this.userName = userName;
+        this.password = password;
+        this.isactive = 0;
+        this.userRolls = "USER";
+        this.userPermissions = "CASUAL_PERMISSION";
+    }
 
 
 
@@ -26,7 +36,6 @@ public class User {
     @Column(name = "iduser")
     int id;
 
-    @ValidEmail
     @Column(name = "u_email")
     String email;
 
@@ -54,6 +63,10 @@ public class User {
 
     @Column(name = "u_permissions")
     String userPermissions;
+
+
+
+
 
     public int getId() {
         return id;

@@ -4,6 +4,7 @@ package at.cloudcomputing.backend.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "hdd")
@@ -25,4 +26,6 @@ public class Hdd {
 
     @Column(name = "h_price")
     float hddprice;
+
+
 }

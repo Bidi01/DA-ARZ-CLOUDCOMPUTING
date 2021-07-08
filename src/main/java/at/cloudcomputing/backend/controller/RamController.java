@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
-@Controller
+@RestController
 @RequestMapping(value = "/ram")
 public class RamController {
 

@@ -1,41 +1,25 @@
 package at.cloudcomputing.backend.models.DTO;
 
-import at.cloudcomputing.backend.config.validation.ValidEmail;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
+import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
-public class UserDTO implements Serializable {
+public class UserDTO {
 
-    @NotEmpty(message = "First name can not be empty")
-    private String firstName;
 
-    @NotEmpty(message = "Last name can not be empty")
-    private String lastName;
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$",
+            message = "Invalid Password pattern. Password must contain 8 to 20 characters at least one digit, lower, upper case and one special character."
+    )
+    String password;
 
-    @NotEmpty(message = "Email can not be empty")
-    @ValidEmail(message = "Please provide a valid email id")
-    private String email;
+    String firstName;
 
-    @NotEmpty(message = "Password can not be empty")
-    private String password;
+    String lastName;
 
-    @NotEmpty(message = "Please confirm your Password")
-    private String confirmPassword;
+    String emailAddress;
 
-    @NotEmpty(message = "Password can not be empty")
-    private String userName;
-
-    private String userRolls = "USER";
-
-    private String userPermissions = "USER";
-
-    private int admin = 0;
-
-    private int isactive = 1;
-
+    String username;
 }

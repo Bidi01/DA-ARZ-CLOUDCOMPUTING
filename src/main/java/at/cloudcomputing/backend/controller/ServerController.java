@@ -39,7 +39,7 @@ public class ServerController {
         if(!serverOptional.isPresent()){
             return ResponseEntity.notFound().build();
         }
-        server.setIdserver(id);
+        server.setId(id);
         serverRepository.save(server);
         return ResponseEntity.noContent().build();
 

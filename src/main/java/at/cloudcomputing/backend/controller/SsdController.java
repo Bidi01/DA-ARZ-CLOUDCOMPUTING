@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
-@Controller
-@RequestMapping(value = "/ssd")
+@RestController
+@RequestMapping(value = "/api/v1/ssd")
 public class SsdController {
     private final SsdRepository ssdRepository;
 

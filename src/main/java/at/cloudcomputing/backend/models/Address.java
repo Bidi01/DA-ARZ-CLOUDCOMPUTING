@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Table(name = "address")
@@ -34,5 +37,15 @@ public class Address {
 
     @Column(name = "a_annotation")
     String annotation;
+
+    @JoinTable(
+            name = "address_has_user",
+            joinColumns = @JoinColumn(
+                    name = "address_idaddress",
+                    referencedColumnName = "idaddress"
+            )
+    )
+    @OneToMany
+    List<User> users;
 
 }
